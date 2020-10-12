@@ -1,39 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { List } from 'react-native-paper';
-
-interface INetwork {
-    name: string;
-    id: number;
-}
+import { ToastAndroid, View } from "react-native";
+import { List, Button } from 'react-native-paper';
+import { listAccounts, createKeyPair } from './utils/sign';
+import { IAccount } from "./types";
+import { NetworkList } from  "./components/NetworkList";
+import { AccountsList } from "./components/AccList";
 
 export const HomeScreen = () => {
-    const [expanded, setExpanded] = useState(false);
-    const [networks] = useState<INetwork[]>([
-        {
-            name: "Main Network",
-            id: 1
-        },
-        {
-            name: "Goerli TestNet",
-            id: 5
-        }
-    ])
-    const [network, setNetwork] = useState<INetwork>(networks[1]);
-
-    const handlePress = () => setExpanded(!expanded);
+    const handleCreate = () => {
+        console.log('Will create new account');
+        createKeyPair("");
+    }
     return (
-        <List.Section title="Select Network">
-            <List.Accordion
-                title={network.name}
-                left={props => <List.Icon {...props} icon="folder" />}
-                expanded={expanded}
-                onPress={handlePress}>
-                    {
-                        networks.map(network => (
-                            <List.Item title={network.name} key={network.id} onPress={() => setNetwork(network)} />
-                        ))
-                    }
-            </List.Accordion>
-        </List.Section>
+        <View>
+            <NetworkList />
+            <AccountsList />
+            <Button icon="ethereum" mode="contained" onPress={handleCreate}>
+                Create New Account
+            </Button>
+        </View>
     )
 }

@@ -5689,6 +5689,10 @@ react-native-gesture-handler@^1.8.0:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+"react-native-geth@https://github.com/0mkara/react-native-geth":
+  version "0.1.0-development"
+  resolved "https://github.com/0mkara/react-native-geth#38d776c3db620f522ba8e1fb8b38d0602e2f892f"
+
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"

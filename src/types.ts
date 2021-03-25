@@ -1,4 +1,4 @@
 export interface IAccount {
-    account: number;
-    address: string;
+  account: number;
+  address: string;
 }

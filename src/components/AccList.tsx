@@ -18,12 +18,12 @@ export const AccountsList = () => {
     );
     // Load geth accounts
     listAccounts()
-      .then((accounts: IAccount[]) => {
-        setAccounts(accounts);
-        setAccount(accounts[0]);
+      .then((accs: IAccount[]) => {
+        setAccounts(accs);
+        setAccount(accs[0]);
       })
-      .catch(error => {
-        setError(error);
+      .catch(err => {
+        setError(err);
       });
   }, []);
   return (
@@ -41,6 +41,7 @@ export const AccountsList = () => {
           />
         ))}
       </List.Accordion>
+      {error && <List.Subheader>{error}</List.Subheader>}
     </List.Section>
   );
 };

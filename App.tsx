@@ -16,6 +16,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import { HomeScreen } from './src/Home';
+import { KeyScanner } from './src/KeyScanner';
+import { TransactionHandler } from './src/TransactionHandler';
 
 declare const global: { HermesInternal: null | {} };
 const Drawer = createDrawerNavigator();
@@ -37,6 +39,8 @@ const App = () => {
         <NavigationContainer>
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={HomeScreen} />
+            <Drawer.Screen name="KeyScanner" component={KeyScanner} />
+            <Drawer.Screen name="Transaction" component={TransactionHandler} />
           </Drawer.Navigator>
         </NavigationContainer>
       </PaperProvider>

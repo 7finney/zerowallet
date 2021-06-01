@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { ToastAndroid } from 'react-native';
 import { List } from 'react-native-paper';
 import { listAccounts } from '../utils/sign';
 import { IAccount } from '../types';
+import { AppContext } from '../appContext';
 
 export const AccountsList = () => {
-  const [accounts, setAccounts] = useState<IAccount[]>([]);
   const [account, setAccount] = useState<IAccount>();
   const [expanded, setExpanded] = useState(false);
   const [error, setError] = useState<Error>();
+  const { accounts, setAccounts } = useContext(AppContext);
   const handlePress = () => setExpanded(!expanded);
   useEffect(() => {
     ToastAndroid.showWithGravity(
-      'Checking Auth',
+      'Fetching accounts from keystore',
       ToastAndroid.SHORT,
       ToastAndroid.BOTTOM,
     );
@@ -25,7 +26,7 @@ export const AccountsList = () => {
       .catch(err => {
         setError(err);
       });
-  }, []);
+  }, [setAccounts]);
   return (
     <List.Section title="Public key">
       <List.Accordion

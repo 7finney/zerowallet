@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -18,6 +18,9 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { HomeScreen } from './src/Home';
 import { KeyScanner } from './src/KeyScanner';
 import { TransactionHandler } from './src/TransactionHandler';
+
+import { AppContext } from './src/appContext';
+import { IAccount } from './src/types';
 
 declare const global: { HermesInternal: null | {} };
 const Drawer = createDrawerNavigator();
@@ -32,8 +35,10 @@ const theme = {
 };
 
 const App = () => {
+  const [accounts, setAccounts] = useState<Array<IAccount>>([]);
+  const appContext = { accounts, setAccounts };
   return (
-    <>
+    <AppContext.Provider value={appContext}>
       <StatusBar barStyle="dark-content" />
       <PaperProvider theme={theme}>
         <NavigationContainer>
@@ -44,7 +49,7 @@ const App = () => {
           </Drawer.Navigator>
         </NavigationContainer>
       </PaperProvider>
-    </>
+    </AppContext.Provider>
   );
 };
 

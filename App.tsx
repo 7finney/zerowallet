@@ -35,8 +35,9 @@ const theme = {
 };
 
 const App = () => {
+  const [account, setAccount] = useState<IAccount>();
   const [accounts, setAccounts] = useState<Array<IAccount>>([]);
-  const appContext = { accounts, setAccounts };
+  const appContext = { account, setAccount, accounts, setAccounts };
   return (
     <AppContext.Provider value={appContext}>
       <StatusBar barStyle="dark-content" />

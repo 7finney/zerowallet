@@ -6,11 +6,11 @@ import { UnsignedTransaction, SignedTransaction } from '../utils/types';
 import { signTransaction } from '../utils/sign';
 
 export const TransactionHandler = () => {
-  const [unsgTx, setUnsgTx] = useState<UnsignedTransaction>();
-  const [signedTx, setSignedTx] = useState<string>();
   const route = useRoute();
   // @ts-ignore
   const { unsgTxHash } = route.params;
+  const [unsgTx, setUnsgTx] = useState<UnsignedTransaction>();
+  const [signedTx, setSignedTx] = useState<string>();
   const fetchTx = async (unsgTxHash: string) => {
     fetch(`https://wallet.ethcode.dev/api/v0/getUnsignedTx/${unsgTxHash}`)
       .then(response => response.json())

@@ -59,3 +59,15 @@ export const setGethAccount = async (accIndex: number) => {
     throw error;
   }
 };
+
+export const deleteKeyPair = async (password: string) => {
+  return new Promise((resolve, reject) => {
+    geth
+      .deleteAccount(password)
+      .then(() => {
+        console.log('Account deleted!');
+        resolve(true);
+      })
+      .catch((error: Error) => reject(error));
+  });
+};

@@ -17,7 +17,7 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import { HomeScreen } from './src/screens/Home';
 import { KeyScanner } from './src/screens/KeyScanner';
-import { TransactionHandler } from './src/screens/TransactionHandler';
+import { AccountsManager } from './src/screens/AccountsManager';
 
 import { AppContext } from './src/utils/appContext';
 import { IAccount } from './src/utils/types';
@@ -45,7 +45,7 @@ const App = () => {
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={HomeScreen} />
             <Drawer.Screen name="KeyScanner" component={KeyScanner} />
-            <Drawer.Screen name="Transaction" component={TransactionHandler} />
+            <Drawer.Screen name="AccountsManager" component={AccountsManager} />
           </Drawer.Navigator>
         </NavigationContainer>
       </PaperProvider>

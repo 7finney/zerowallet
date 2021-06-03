@@ -45,8 +45,11 @@ const App = () => {
         <NavigationContainer>
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="KeyScanner" component={KeyScanner} />
-            <Drawer.Screen name="AccountsManager" component={AccountsManager} />
+            <Drawer.Screen name="Scan QR" component={KeyScanner} />
+            <Drawer.Screen
+              name="Accounts Manager"
+              component={AccountsManager}
+            />
           </Drawer.Navigator>
         </NavigationContainer>
       </PaperProvider>

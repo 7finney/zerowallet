@@ -29,7 +29,6 @@ export const AccountsList = () => {
       });
   }, [setAccounts, setAccount]);
   const copyAddress = () => {
-    console.log('Left button pressed.');
     Clipboard.setString(account?.address ? account.address : '');
     ToastAndroid.showWithGravity(
       'Public address copied to clipboard!',

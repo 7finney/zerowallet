@@ -7,7 +7,6 @@ export const KeyScanner = () => {
   const { navigate } = useNavigation();
   const [dismiss, setDismiss] = useState(false);
   const onSuccess = (data: any) => {
-    console.log(data);
     navigate('Transaction', {
       unsgTxHash: data.data,
     });
@@ -17,17 +16,10 @@ export const KeyScanner = () => {
       onRead={onSuccess}
       showMarker
       fadeIn={false}
-      containerStyle={{
-        backgroundColor: '#000',
-      }}
+      containerStyle={styles.qrcontainer}
       bottomContent={
         !dismiss ? (
-          <View
-            style={{
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              marginTop: 20,
-            }}>
+          <View style={styles.container}>
             <TouchableOpacity
               onPress={() => {
                 setDismiss(true);
@@ -51,6 +43,14 @@ export const KeyScanner = () => {
 };
 
 const styles = StyleSheet.create({
+  qrcontainer: {
+    backgroundColor: '#000',
+  },
+  container: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 20,
+  },
   textBold: {
     fontWeight: '500',
     color: '#fff',

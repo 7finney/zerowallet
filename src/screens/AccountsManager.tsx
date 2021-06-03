@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, ToastAndroid } from 'react-native';
-import { Button, Portal, Modal, TextInput } from 'react-native-paper';
+import { Button, Portal, Modal, TextInput, Surface } from 'react-native-paper';
 import { AppContext } from '../utils/appContext';
 import { AccountsList } from '../components/AccList';
 import { deleteKeyPair, listAccounts } from '../utils/sign';
@@ -70,19 +70,29 @@ export const AccountsManager = () => {
           </Button>
         </Modal>
       </Portal>
-      <Button icon="delete-forever" mode="contained" onPress={showPwdPrompt}>
-        Delete account
-      </Button>
-      {/* TODO: Show account QR */}
-      {/* <Button icon="delete-forever" mode="contained" onPress={showAddressQR}>
-        Show address QR
-      </Button> */}
+      <Surface style={styles.surface}>
+        <Button
+          icon="delete-forever"
+          mode="contained"
+          onPress={showPwdPrompt}
+          style={styles.buttonStyle}>
+          Delete account
+        </Button>
+        {/* TODO: Show account QR */}
+        {/* <Button icon="delete-forever" mode="contained" onPress={showAddressQR}>
+          Show address QR
+        </Button> */}
+      </Surface>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {},
+  surface: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   modalContainerStyle: {
     backgroundColor: 'white',
     padding: 20,

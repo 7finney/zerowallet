@@ -941,6 +941,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@react-native-clipboard/clipboard@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-clipboard/clipboard/-/clipboard-1.8.0.tgz#f774d218a82ad14deb56091eff3a132eb31fb285"
+  integrity sha512-b2Qc+lHpdumys+dE1uBZkLXMECBKKAC7ufrQ1rvPsIdWPI4igagm4LW13t253o2Nq1P61jI0UrYDkogc96EXew==
+
 "@react-native-community/async-storage@^1.6.1":
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.12.1.tgz#25f821b4f6b13abe005ad67e47c6f1cee9f27b24"

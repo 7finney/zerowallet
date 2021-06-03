@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, ToastAndroid } from 'react-native';
 import { Button, Portal, Modal, TextInput } from 'react-native-paper';
 import { AppContext } from '../utils/appContext';
@@ -73,6 +73,10 @@ export const AccountsManager = () => {
       <Button icon="delete-forever" mode="contained" onPress={showPwdPrompt}>
         Delete account
       </Button>
+      {/* TODO: Show account QR */}
+      {/* <Button icon="delete-forever" mode="contained" onPress={showAddressQR}>
+        Show address QR
+      </Button> */}
     </View>
   );
 };

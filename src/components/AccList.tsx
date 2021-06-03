@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { ToastAndroid } from 'react-native';
 import { List } from 'react-native-paper';
-import { listAccounts } from '../utils/sign';
+import { listAccounts, setGethAccount } from '../utils/sign';
 import { IAccount } from '../types';
 import { AppContext } from '../appContext';
 
@@ -22,6 +22,7 @@ export const AccountsList = () => {
       .then((accs: IAccount[]) => {
         setAccounts(accs);
         setAccount(accs[0]);
+        setGethAccount(0);
       })
       .catch(err => {
         setError(err);
@@ -38,7 +39,10 @@ export const AccountsList = () => {
           <List.Item
             title={acc.address}
             key={acc.account}
-            onPress={() => setAccount(acc)}
+            onPress={() => {
+              setAccount(acc);
+              setGethAccount(accounts.indexOf(acc));
+            }}
           />
         ))}
       </List.Accordion>

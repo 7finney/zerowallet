@@ -8,7 +8,9 @@ export const KeyScanner = () => {
   const [dismiss, setDismiss] = useState(false);
   const onSuccess = (data: any) => {
     console.log(data);
-    navigate('Transaction');
+    navigate('Transaction', {
+      unsgTxHash: data.data,
+    });
   };
   return (
     <QRCodeScanner

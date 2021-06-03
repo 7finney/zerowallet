@@ -8,22 +8,19 @@
  * @format
  */
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
+import React, { useState } from 'react';
+import { StatusBar } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
-import { HomeScreen } from "./src/Home";
+import { HomeScreen } from './src/screens/Home';
+import { KeyScanner } from './src/screens/KeyScanner';
+import { AccountsManager } from './src/screens/AccountsManager';
+
+import { AppContext } from './src/utils/appContext';
+import { IAccount } from './src/utils/types';
 
 declare const global: { HermesInternal: null | {} };
 const Drawer = createDrawerNavigator();
@@ -38,57 +35,26 @@ const theme = {
 };
 
 const App = () => {
+  const [account, setAccount] = useState<IAccount>();
+  const [accounts, setAccounts] = useState<Array<IAccount>>([]);
+  const appContext = { account, setAccount, accounts, setAccounts };
   return (
-    <>
+    <AppContext.Provider value={appContext}>
       <StatusBar barStyle="dark-content" />
       <PaperProvider theme={theme}>
         <NavigationContainer>
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={HomeScreen} />
+            <Drawer.Screen name="Scan QR" component={KeyScanner} />
+            <Drawer.Screen
+              name="Accounts Manager"
+              component={AccountsManager}
+            />
           </Drawer.Navigator>
         </NavigationContainer>
       </PaperProvider>
-    </>
+    </AppContext.Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
 export default App;

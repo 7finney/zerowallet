@@ -1,5 +1,5 @@
 {
-  "name": "ZeroWallet",
+  "name": "zerowallet",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,14 +10,17 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-clipboard/clipboard": "^1.8.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/drawer": "^5.9.3",
     "@react-navigation/native": "^5.7.6",
-    "react": "16.13.1",
-    "react-native": "0.63.3",
+    "react": "17.0.1",
+    "react-native": "0.64.0",
+    "react-native-camera": "^3.43.2",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-geth": "https://github.com/0mkara/react-native-geth",
     "react-native-paper": "^4.2.0",
+    "react-native-qrcode-scanner": "^1.5.3",
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.11.0",

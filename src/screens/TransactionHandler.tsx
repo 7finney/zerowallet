@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { List, Button } from 'react-native-paper';
-import { UnsignedTransaction, SignedTransaction } from './types';
-import { signTransaction } from './utils/sign';
+import { UnsignedTransaction, SignedTransaction } from '../utils/types';
+import { signTransaction } from '../utils/sign';
 
 export const TransactionHandler = () => {
   const [unsgTx, setUnsgTx] = useState<UnsignedTransaction>();

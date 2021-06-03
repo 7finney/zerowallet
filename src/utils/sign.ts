@@ -1,6 +1,6 @@
 import Geth from 'react-native-geth';
 const geth = new Geth({ networkID: 5, testNet: 'goerli' });
-import { IAccount, SignedTransaction } from '../types';
+import { IAccount, SignedTransaction } from './types';
 
 function trimInput(input: any) {
   return input.startsWith('0x') ? input.slice(2) : input;

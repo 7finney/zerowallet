@@ -15,12 +15,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
-import { HomeScreen } from './src/Home';
-import { KeyScanner } from './src/KeyScanner';
-import { TransactionHandler } from './src/TransactionHandler';
+import { HomeScreen } from './src/screens/Home';
+import { KeyScanner } from './src/screens/KeyScanner';
+import { TransactionHandler } from './src/screens/TransactionHandler';
 
-import { AppContext } from './src/appContext';
-import { IAccount } from './src/types';
+import { AppContext } from './src/utils/appContext';
+import { IAccount } from './src/utils/types';
 
 declare const global: { HermesInternal: null | {} };
 const Drawer = createDrawerNavigator();

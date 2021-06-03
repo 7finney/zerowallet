@@ -2,8 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import { ToastAndroid } from 'react-native';
 import { List } from 'react-native-paper';
 import { listAccounts, setGethAccount } from '../utils/sign';
-import { IAccount } from '../types';
-import { AppContext } from '../appContext';
+import { IAccount } from '../utils/types';
+import { AppContext } from '../utils/appContext';
 
 export const AccountsList = () => {
   const [account, setAccount] = useState<IAccount>();

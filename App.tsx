@@ -41,9 +41,8 @@ const theme = {
 
 function Transaction() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Load Transaction" component={TransactionLoader} />
-      <Stack.Screen name="Scan QR" component={KeyScanner} />
+    <Stack.Navigator initialRouteName="Import Transaction">
+      <Stack.Screen name="Import Transaction" component={TransactionLoader} />
       <Stack.Screen name="Transaction" component={TransactionHandler} />
     </Stack.Navigator>
   );
@@ -60,6 +59,7 @@ const App = () => {
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={HomeScreen} />
             <Drawer.Screen name="Transactions" component={Transaction} />
+            <Drawer.Screen name="Scan QR" component={KeyScanner} />
             <Drawer.Screen name="Accounts" component={AccountsManager} />
           </Drawer.Navigator>
         </NavigationContainer>

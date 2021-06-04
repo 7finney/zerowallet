@@ -2,14 +2,23 @@ import React, { useState } from 'react';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { UnsignedTransaction } from '../utils/types';
 
 export const KeyScanner = () => {
   const { navigate } = useNavigation();
   const [dismiss, setDismiss] = useState(false);
   const onSuccess = (data: any) => {
-    navigate('Transaction', {
-      unsgTxHash: data.data,
-    });
+    const unsgTxHash = data.data;
+    fetch(`https://wallet.ethcode.dev/api/v0/getUnsignedTx/${unsgTxHash}`)
+      .then(response => response.json())
+      .then(txJSON => {
+        console.log(txJSON);
+        const unsignedTx: UnsignedTransaction = JSON.parse(JSON.parse(txJSON));
+        navigate('Transaction', {
+          unsignedTx,
+        });
+      })
+      .catch(error => console.error(error));
   };
   return (
     <QRCodeScanner

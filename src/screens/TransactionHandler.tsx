@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import React, { useState } from 'react';
+import { View, ToastAndroid } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { List, Button } from 'react-native-paper';
-import { UnsignedTransaction, SignedTransaction } from '../utils/types';
+import { SignedTransaction } from '../utils/types';
 import { signTransaction } from '../utils/sign';
 
 export const TransactionHandler = () => {
   const route = useRoute();
   // @ts-ignore
-  const { unsgTxHash } = route.params;
-  const [unsgTx, setUnsgTx] = useState<UnsignedTransaction>();
+  const { unsignedTx } = route.params;
   const [signedTx, setSignedTx] = useState<string>();
-  const fetchTx = async (unsgTxHash: string) => {
-    fetch(`https://wallet.ethcode.dev/api/v0/getUnsignedTx/${unsgTxHash}`)
-      .then(response => response.json())
-      .then(txJSON => {
-        console.log(txJSON);
-        const unsignedTx: UnsignedTransaction = JSON.parse(JSON.parse(txJSON));
-        setUnsgTx(unsignedTx);
-      })
-      .catch(error => console.error(error));
-  };
-  useEffect(() => {
-    fetchTx(unsgTxHash);
-  }, [unsgTxHash]);
   const handleSign = () => {
-    signTransaction('', unsgTx)
+    signTransaction('', unsignedTx)
       .then((signedTx: SignedTransaction) => {
         const { rawTransaction } = signedTx;
         setSignedTx(rawTransaction);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        ToastAndroid.showWithGravity(
+          `Error: Transaction sign failed.\n${err}`,
+          ToastAndroid.SHORT,
+          ToastAndroid.BOTTOM,
+        );
+      });
   };
   const handleSend = () => {
     console.log('Should send tx');
@@ -54,31 +47,31 @@ export const TransactionHandler = () => {
       <List.Section>
         <List.Subheader>Transaction details</List.Subheader>
         <List.Item
-          title={unsgTx?.from}
+          title={unsignedTx?.from}
           left={() => <Button mode="contained">From</Button>}
         />
         <List.Item
-          title={unsgTx?.to}
+          title={unsignedTx?.to}
           left={() => <Button mode="contained">To</Button>}
         />
         <List.Item
-          title={unsgTx?.gasPrice}
+          title={unsignedTx?.gasPrice}
           left={() => <Button mode="contained">Gas price</Button>}
         />
         <List.Item
-          title={unsgTx?.gas}
+          title={unsignedTx?.gas}
           left={() => <Button mode="contained">Gas</Button>}
         />
         <List.Item
-          title={unsgTx?.value}
+          title={unsignedTx?.value}
           left={() => <Button mode="contained">Ether value</Button>}
         />
         <List.Item
-          title={unsgTx?.nonce}
+          title={unsignedTx?.nonce}
           left={() => <Button mode="contained">Nonce</Button>}
         />
         <List.Item
-          title={unsgTx?.data}
+          title={unsignedTx?.data}
           left={() => <Button mode="contained">Transaction data</Button>}
         />
         {signedTx && (

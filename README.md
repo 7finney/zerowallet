@@ -29,7 +29,13 @@ cd android
 
 **Spep 3: Deploy transaction**
 
+## QR code usage
 <p align="center">
   <img src="https://user-images.githubusercontent.com/13261372/91479261-cd0f8c80-e8be-11ea-8860-4a102b421470.png" height="400">
   <img src="https://user-images.githubusercontent.com/13261372/91479263-cd0f8c80-e8be-11ea-8cfa-0ef4b08ba573.png" height="400">
 </p>
+
+## Demo tx
+```
+"{\"gasPrice\":1000000000,\"chainId\":5,\"from\":\"0x6fdB9CB082c7eCB72a59A3e5D82A5bA8E187dd39\",\"gas\":0,\"nonce\":5,\"value\":2,\"to\":\"0x1ae1AED6eBa7Ebee6039b383f1Be3C5C141D3bC5\",\"data\":\"0xa9059cbb000000000000000000000000af6d1826fdc87a6f12b015f12629f35b5b46024c0000000000000000000000000000000000000000000000000000000000000002\"}"
+```

@@ -17,6 +17,8 @@
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-camera": "^3.43.2",
+    "react-native-document-picker": "^5.0.4",
+    "react-native-fs": "^2.18.0",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-geth": "https://github.com/0mkara/react-native-geth",
     "react-native-paper": "^4.2.0",

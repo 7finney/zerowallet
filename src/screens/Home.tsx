@@ -73,7 +73,7 @@ export const HomeScreen = () => {
           icon="camera"
           mode="contained"
           style={styles.buttonStyle}
-          onPress={() => navigate('QRScanner')}>
+          onPress={() => navigate('Scan QR')}>
           Scan
         </Button>
       </Surface>

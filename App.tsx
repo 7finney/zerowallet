@@ -13,6 +13,8 @@ import { StatusBar } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import { HomeScreen } from './src/screens/Home';
@@ -26,6 +28,7 @@ import { TransactionLoader } from './src/screens/TransactionLoader';
 
 declare const global: { HermesInternal: null | {} };
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
 const theme = {
   ...DefaultTheme,
@@ -38,11 +41,11 @@ const theme = {
 
 function Transaction() {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Load Transaction" component={TransactionLoader} />
-      <Drawer.Screen name="Scan QR" component={KeyScanner} />
-      <Drawer.Screen name="Transaction" component={TransactionHandler} />
-    </Drawer.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="Load Transaction" component={TransactionLoader} />
+      <Stack.Screen name="Scan QR" component={KeyScanner} />
+      <Stack.Screen name="Transaction" component={TransactionHandler} />
+    </Stack.Navigator>
   );
 }
 const App = () => {

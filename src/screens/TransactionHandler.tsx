@@ -4,14 +4,19 @@ import { useRoute } from '@react-navigation/native';
 import { List, Button } from 'react-native-paper';
 import { SignedTransaction } from '../utils/types';
 import { signTransaction } from '../utils/sign';
+import { PasswordPrompt } from '../components/PasswordPrompt';
 
 export const TransactionHandler = () => {
   const route = useRoute();
   // @ts-ignore
   const { unsignedTx } = route.params;
   const [signedTx, setSignedTx] = useState<string>();
-  const handleSign = () => {
-    signTransaction('', unsignedTx)
+  const [visible, setVisible] = useState<boolean>(false);
+  const showPwdPrompt = () => setVisible(true);
+  const hidePwdPrompt = () => setVisible(false);
+  const handleSign = (password: string) => {
+    hidePwdPrompt();
+    signTransaction(password, unsignedTx)
       .then((signedTx: SignedTransaction) => {
         const { rawTransaction } = signedTx;
         setSignedTx(rawTransaction);
@@ -26,7 +31,6 @@ export const TransactionHandler = () => {
       });
   };
   const handleSend = () => {
-    console.log('Should send tx');
     const formData = new FormData();
     formData.append('netId', 5);
     formData.append('rawTx', signedTx);
@@ -83,8 +87,13 @@ export const TransactionHandler = () => {
           />
         )}
       </List.Section>
+      <PasswordPrompt
+        visible={visible}
+        hidePasswordPrompt={hidePwdPrompt}
+        onSubmit={handleSign}
+      />
       {!signedTx && (
-        <Button icon="ethereum" mode="contained" onPress={handleSign}>
+        <Button icon="ethereum" mode="contained" onPress={showPwdPrompt}>
           Sign transaction
         </Button>
       )}

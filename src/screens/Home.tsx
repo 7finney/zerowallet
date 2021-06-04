@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, ToastAndroid } from 'react-native';
-import { Button, Modal, Portal, TextInput, Surface } from 'react-native-paper';
+import { View, StyleSheet, ToastAndroid } from 'react-native';
+import { Button, Surface } from 'react-native-paper';
 import { createKeyPair } from '../utils/sign';
 import { NetworkList } from '../components/NetworkList';
+import { PasswordPrompt } from '../components/PasswordPrompt';
 import { AccountsList } from '../components/AccList';
 import { useNavigation } from '@react-navigation/native';
 import { IAccount } from '../utils/types';
@@ -12,14 +13,11 @@ export const HomeScreen = () => {
   const { navigate } = useNavigation();
   const { accounts, setAccounts } = useContext(AppContext);
   const [visible, setVisible] = useState<boolean>(false);
-  const [secureTextEntry, setSecureTextEntry] = useState<boolean>(true);
-  const [pwd, setPwd] = useState<string>('');
   const showPwdPrompt = () => setVisible(true);
   const hidePwdPrompt = () => setVisible(false);
-  const handleCreate = () => {
+  const handleCreate = (password: string) => {
     console.log('Will create new account');
-    createKeyPair(pwd).then((keyPair: IAccount) => {
-      setPwd('');
+    createKeyPair(password).then((keyPair: IAccount) => {
       hidePwdPrompt();
       setAccounts([...accounts, keyPair]);
       ToastAndroid.showWithGravity(
@@ -33,34 +31,11 @@ export const HomeScreen = () => {
     <View style={styles.container}>
       <NetworkList />
       <AccountsList />
-      <Portal>
-        <Modal
-          visible={visible}
-          onDismiss={hidePwdPrompt}
-          contentContainerStyle={styles.modalContainerStyle}>
-          <Text>Enter a password for your keys!</Text>
-          <TextInput
-            label="Password"
-            secureTextEntry={secureTextEntry}
-            right={
-              <TextInput.Icon
-                name="eye"
-                onPressIn={() => setSecureTextEntry(false)}
-                onPressOut={() => setSecureTextEntry(true)}
-              />
-            }
-            value={pwd}
-            onChangeText={text => setPwd(text)}
-          />
-          <Button
-            icon="ethereum"
-            mode="contained"
-            onPress={handleCreate}
-            style={styles.buttonStyle}>
-            Create
-          </Button>
-        </Modal>
-      </Portal>
+      <PasswordPrompt
+        visible={visible}
+        hidePasswordPrompt={hidePwdPrompt}
+        onSubmit={handleCreate}
+      />
       <Surface style={styles.surface}>
         <Button
           icon="ethereum"
